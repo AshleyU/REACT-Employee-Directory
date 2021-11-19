@@ -1,4 +1,5 @@
 import React from 'react';
+import {useState} from 'react';
 import { Form } from 'reactstrap';
 import { Label } from 'reactstrap';
 import { Input } from 'reactstrap';
@@ -9,6 +10,17 @@ import { InputGroup } from 'reactstrap';
 import { Col } from 'reactstrap';
 
 function EmployeeForm() {
+
+  const [name, setName] = useState('');
+  const [position, setPosition] = useState('');
+  const [email, setEmail] = useState('');
+  const [years, setYears] = useState(0);
+  const [salary, setSalary] = useState(0);
+
+  const displayInfo = () => {
+    console.log(name + " " + position + " " + email + " " + years + " " + salary);
+  }
+
   return (
     <div className="information">
         <Col
@@ -22,56 +34,59 @@ function EmployeeForm() {
           <div className="form">
             <Form>
               <FormGroup>
-                <Label for="exampleEmail">
+                <Label for="name">
                   Name
                 </Label>
                 <Input
-                  id="exampleEmail"
-                  name="email"
-                  placeholder="with a placeholder"
-                  type="email"
+                  id="name"
+                  name="name"
+                  type="name"
+                  onChange={(event) => {
+                    setName(event.target.value);
+                    }}
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="examplePassword">
+                <Label for="position">
                   Position
                 </Label>
                 <Input
-                  id="examplePassword"
-                  name="password"
-                  placeholder="password placeholder"
-                  type="password"
+                  id="position"
+                  name="position"
+                  type="position"
+                  onChange={(event) => {
+                    setPosition(event.target.value);
+                  }}
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="examplePassword">
+                <Label for="email">
                   Email
                 </Label>
-                <Input
-                  id="examplePassword"
-                  name="password"
-                  placeholder="password placeholder"
-                  type="password"
-                />
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    onChange={(event) => {
+                      setEmail(event.target.value);
+                    }}
+                  />
               </FormGroup>
               <FormGroup>
-                <Label for="exampleNumber">
+                <Label for="yearsInService">
                   Years in Service
                 </Label>
-                <InputGroup>
                   <Input
-                    id="exampleNumber"
-                    name="number"
-                    placeholder="number placeholder"
+                    id="yearsInService"
+                    name="yearsInService"
                     type="number"
+                    onChange={(event) => {
+                      setYears(event.target.value);
+                    }}
                   />
-                  <InputGroupText>
-                    @example.com
-                  </InputGroupText>
-                </InputGroup>
               </FormGroup>
               <FormGroup>
-                <Label for="exampleNumber">
+                <Label for="salary">
                   Salary
                 </Label>
                 <InputGroup>
@@ -79,15 +94,17 @@ function EmployeeForm() {
                     $
                   </InputGroupText>
                   <Input
-                    id="exampleNumber"
-                    name="number"
-                    placeholder="number placeholder"
+                    id="salary"
+                    name="salary"
                     type="number"
+                    onChange={(event) => {
+                      setSalary(event.target.value);
+                    }}
                   />
                 </InputGroup>           
               </FormGroup>
               <div className="submitButton">
-                <Button color="primary" outline size="sm">
+                <Button color="primary" outline size="sm" onClick={displayInfo}>
                   Add Employee
                 </Button>
               </div>
