@@ -87,8 +87,8 @@ function EmployeeForm() {
                 </InputGroup>           
               </FormGroup>
               <div className="submitButton">
-                <Button>
-                  Submit
+                <Button color="primary" outline size="sm">
+                  Add Employee
                 </Button>
               </div>
             </Form>
