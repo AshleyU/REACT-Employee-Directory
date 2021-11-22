@@ -73,13 +73,14 @@ function EmployeeForm() {
                   />
               </FormGroup>
               <FormGroup>
-                <Label for="yearsInService">
-                  Years in Service
+                <Label for="startDate">
+                  Start Date
                 </Label>
                   <Input
-                    id="yearsInService"
-                    name="yearsInService"
-                    type="number"
+                    id="startDate"
+                    name="date"
+                    placeholder="date placeholder"
+                    type="date"
                     onChange={(event) => {
                       setYears(event.target.value);
                     }}
