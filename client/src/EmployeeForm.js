@@ -8,18 +8,27 @@ import { Button } from 'reactstrap';
 import { InputGroupText } from 'reactstrap';
 import { InputGroup } from 'reactstrap';
 import { Col } from 'reactstrap';
+import Axios from 'axios';
 
-function EmployeeForm() {
+function EmployeeForm(props) {
 
   const [name, setName] = useState('');
   const [position, setPosition] = useState('');
   const [email, setEmail] = useState('');
-  const [years, setYears] = useState(0);
+  const [startDate, setStartDate] = useState(0);
   const [salary, setSalary] = useState(0);
 
-  const displayInfo = () => {
-    console.log(name + " " + position + " " + email + " " + years + " " + salary);
-  }
+  // const addEmployee = () => {
+  //   Axios.post('http://localhost:3001/create', {
+  //     name: name, 
+  //     position: position, 
+  //     email: email, 
+  //     startDate: startDate, 
+  //     salary: salary 
+  //   }).then(() => {
+  //     console.log("Success");
+  //   });
+  // };
 
   return (
     <div className="information">
@@ -82,7 +91,7 @@ function EmployeeForm() {
                     placeholder="date placeholder"
                     type="date"
                     onChange={(event) => {
-                      setYears(event.target.value);
+                      setStartDate(event.target.value);
                     }}
                   />
               </FormGroup>
@@ -105,7 +114,7 @@ function EmployeeForm() {
                 </InputGroup>           
               </FormGroup>
               <div className="submitButton">
-                <Button color="primary" outline size="sm" onClick={displayInfo}>
+                <Button color="primary" outline size="sm">
                   Add Employee
                 </Button>
               </div>
