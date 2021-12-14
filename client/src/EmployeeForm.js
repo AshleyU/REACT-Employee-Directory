@@ -6,7 +6,7 @@ import { Input } from 'reactstrap';
 import { FormGroup } from 'reactstrap';
 import { Button } from 'reactstrap';
 import { InputGroupText } from 'reactstrap';
-import { InputGroup } from 'reactstrap';
+import { InputGroup, Row } from 'reactstrap';
 import { Col } from 'reactstrap';
 import Axios from 'axios';
 
@@ -32,15 +32,15 @@ function EmployeeForm(props) {
 
   return (
     <div className="information">
-        <Col
+    <Row>
+      <Col
         className="bg-light border"
-        md={{
-          offset: 3,
-          size: 6
-        }}
-        sm="12"
-        >
-          <div className="form">
+        sm={{
+        offset: 1,
+        size: 4
+      }}
+      >
+          <div className="form col-6">
             <Form>
               <FormGroup>
                 <Label for="name">
@@ -121,6 +121,16 @@ function EmployeeForm(props) {
             </Form>
           </div>
         </Col>
+        <Col
+          className="bg-light border"
+          sm={{
+        offset: 1,
+        size: 5
+      }}
+        >
+          .col-6
+        </Col>
+      </Row>
     </div>
   );
 }
