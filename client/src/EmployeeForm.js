@@ -18,17 +18,17 @@ function EmployeeForm(props) {
   const [startDate, setStartDate] = useState(0);
   const [salary, setSalary] = useState(0);
 
-  // const addEmployee = () => {
-  //   Axios.post('http://localhost:3001/create', {
-  //     name: name, 
-  //     position: position, 
-  //     email: email, 
-  //     startDate: startDate, 
-  //     salary: salary 
-  //   }).then(() => {
-  //     console.log("Success");
-  //   });
-  // };
+  const addEmployee = () => {
+    Axios.post('http://localhost:3001/create', {
+      name: name, 
+      position: position, 
+      email: email, 
+      startDate: startDate, 
+      salary: salary, 
+    }).then(() => {
+      console.log("Success");
+    });
+  };
 
   return (
     <div className="information">
@@ -114,7 +114,7 @@ function EmployeeForm(props) {
                 </InputGroup>           
               </FormGroup>
               <div className="submitButton">
-                <Button color="primary" outline size="sm">
+                <Button onClick={addEmployee} color="primary" outline size="sm">
                   Add Employee
                 </Button>
               </div>
