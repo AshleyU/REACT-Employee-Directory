@@ -15,16 +15,15 @@ function EmployeeForm(props) {
   const [name, setName] = useState('');
   const [position, setPosition] = useState('');
   const [email, setEmail] = useState('');
-  const [startDate, setStartDate] = useState(0);
   const [salary, setSalary] = useState(0);
   const [employeeList, setEmployeeList] = useState([]);
+  const [newWage, setNewWage] = useState(0);
 
   const addEmployee = () => {
     Axios.post('http://localhost:3001/create', {
       name: name, 
       position: position, 
       email: email, 
-      startDate: startDate, 
       salary: salary, 
     }).then(() => {
       console.log("Success");
@@ -35,6 +34,15 @@ function EmployeeForm(props) {
     Axios.get('http://localhost:3001/employees').then((response) => {
       setEmployeeList(response.data);
     });
+  }
+
+  const updateSalary = (id) => {
+    Axios.put('http://localhost:3001/update', {
+      wage: newWage,
+      id: id
+    }).then((response) => {
+      alert('update');
+    })
   }
 
   return (
@@ -90,20 +98,6 @@ function EmployeeForm(props) {
                   />
               </FormGroup>
               <FormGroup>
-                <Label for="startDate">
-                  Start Date
-                </Label>
-                  <Input
-                    id="startDate"
-                    name="date"
-                    placeholder="date placeholder"
-                    type="date"
-                    onChange={(event) => {
-                      setStartDate(event.target.value);
-                    }}
-                  />
-              </FormGroup>
-              <FormGroup>
                 <Label for="salary">
                   Salary
                 </Label>
@@ -153,9 +147,19 @@ function EmployeeForm(props) {
                     </CardSubtitle>
                     <CardText tag="h6" id="more-info">
                       Email: {val.email} <br/>
-                      Salary: {val.salary}<br/>
-                      Star Date: {val.startDate}
+                      Salary: {val.salary}
                     </CardText>
+                    <Input
+                      bsSize="sm"
+                      className="mb-3"
+                      placeholder="Change Salary"
+                      onChange={(event) => {
+                        setNewWage(event.target.value);
+                      }}
+                    />
+                    <Button onClick={()=>{updateSalary(val.id)}}color="secondary" outline size="sm">
+                      Update Salary
+                    </Button>
                   </CardBody>
                 </Card>
               </div>

@@ -17,11 +17,10 @@ app.post('/create', (req, res) => {
     const name = req.body.name;
     const position = req.body.position;
     const email = req.body.email;
-    const startDate = req.body.startDate;
     const salary = req.body.salary;
 
-    db.query('INSERT INTO employees (name, position, email, startDate, salary) VALUES (?,?,?,?,?)', 
-    [name, position, email, startDate, salary], 
+    db.query('INSERT INTO employees (name, position, email, salary) VALUES (?,?,?,?,?)', 
+    [name, position, email, salary], 
     (err, result) => {
         if (err) {
             console.log(err);
@@ -40,6 +39,20 @@ app.get('/employees', (req, res) => {
         }
     });
 });
+
+app.put('/update', (req, res) => {
+    const id = req.body.id;
+    const wage = req.body.wage;
+    db.query("UPDATE SET employees wage = ? WHERE id = ?", [wage, id], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result);
+        }
+    });
+});
+
+//app.delete('/delete')
 
 app.listen(3001, () => {
     console.log("Yay! Your server is running on port 3001.");
