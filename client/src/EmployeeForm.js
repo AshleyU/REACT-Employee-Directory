@@ -6,7 +6,7 @@ import { Input } from 'reactstrap';
 import { FormGroup } from 'reactstrap';
 import { Button } from 'reactstrap';
 import { InputGroupText } from 'reactstrap';
-import { InputGroup, Row } from 'reactstrap';
+import { InputGroup, Row, Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
 import { Col } from 'reactstrap';
 import Axios from 'axios';
 
@@ -33,7 +33,7 @@ function EmployeeForm(props) {
 
   const getEmployees = () => {
     Axios.get('http://localhost:3001/employees').then((response) => {
-      console.log(response);
+      setEmployeeList(response.data);
     });
   }
 
@@ -47,7 +47,7 @@ function EmployeeForm(props) {
         size: 4
       }}
       >
-        Add New Employee
+        <h4>Add New Employee</h4>
           <div className="form col-6">
             <Form>
               <FormGroup>
@@ -136,10 +136,32 @@ function EmployeeForm(props) {
         size: 5
       }}
         >
-          Employees
+        <h4>Employees</h4>
           <div className="showEmployees">
-            <Button onClick={getEmployees} color="primary" outline size="sm">Show Employees</Button>
+            {employeeList.map((val, key) => {
+              return <div className="employee">
+                <Card id="employee-card">
+                  <CardBody>
+                    <CardTitle tag="h5">
+                      {val.name}
+                    </CardTitle>
+                    <CardSubtitle
+                      className="mb-2 text-muted"
+                      tag="h6"
+                    >
+                      {val.position}
+                    </CardSubtitle>
+                    <CardText tag="h6" id="more-info">
+                      Email: {val.email} <br/>
+                      Salary: {val.salary}<br/>
+                      Star Date: {val.startDate}
+                    </CardText>
+                  </CardBody>
+                </Card>
+              </div>
+            })}
           </div>
+          <Button onClick={getEmployees} color="primary" outline size="sm" id="show-employees-btn">Show Employees</Button>
         </Col>
       </Row>
     </div>
