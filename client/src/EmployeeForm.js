@@ -17,6 +17,7 @@ function EmployeeForm(props) {
   const [email, setEmail] = useState('');
   const [startDate, setStartDate] = useState(0);
   const [salary, setSalary] = useState(0);
+  const [employeeList, setEmployeeList] = useState([]);
 
   const addEmployee = () => {
     Axios.post('http://localhost:3001/create', {
@@ -30,6 +31,12 @@ function EmployeeForm(props) {
     });
   };
 
+  const getEmployees = () => {
+    Axios.get('http://localhost:3001/employees').then((response) => {
+      console.log(response);
+    });
+  }
+
   return (
     <div className="information">
     <Row>
@@ -40,6 +47,7 @@ function EmployeeForm(props) {
         size: 4
       }}
       >
+        Add New Employee
           <div className="form col-6">
             <Form>
               <FormGroup>
@@ -128,7 +136,10 @@ function EmployeeForm(props) {
         size: 5
       }}
         >
-          .col-6
+          Employees
+          <div className="showEmployees">
+            <Button onClick={getEmployees} color="primary" outline size="sm">Show Employees</Button>
+          </div>
         </Col>
       </Row>
     </div>
