@@ -173,6 +173,7 @@ function EmployeeForm(props) {
                     <Button onClick={()=>{updateSalary(val.id)}}color="secondary" outline size="sm">
                       Update Salary
                     </Button>
+                    <Button color="danger" outline size="sm" id="delete-employees-btn">Delete Employee</Button>
                   </CardBody>
                 </Card>
               </div>
