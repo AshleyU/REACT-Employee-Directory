@@ -17,7 +17,7 @@ function EmployeeForm(props) {
   const [email, setEmail] = useState('');
   const [salary, setSalary] = useState(0);
   const [employeeList, setEmployeeList] = useState([]);
-  const [newWage, setNewWage] = useState(0);
+  const [newSalary, setNewSalary] = useState(0);
 
   const addEmployee = () => {
     Axios.post('http://localhost:3001/create', {
@@ -38,12 +38,25 @@ function EmployeeForm(props) {
 
   const updateSalary = (id) => {
     Axios.put('http://localhost:3001/update', {
-      wage: newWage,
+      salary: newSalary,
       id: id
     }).then((response) => {
-      alert('update');
-    })
-  }
+      setEmployeeList(
+        employeeList.map((val) => {
+          return val.id == id
+            ? {
+                id: val.id,
+                name: val.name,
+                position: val.position,
+                email: val.email,
+                salary: newSalary,
+              }
+            : val;
+          })
+        );
+      } 
+    );
+  };
 
   return (
     <div className="information">
@@ -154,7 +167,7 @@ function EmployeeForm(props) {
                       className="mb-3"
                       placeholder="Change Salary"
                       onChange={(event) => {
-                        setNewWage(event.target.value);
+                        setNewSalary(event.target.value);
                       }}
                     />
                     <Button onClick={()=>{updateSalary(val.id)}}color="secondary" outline size="sm">

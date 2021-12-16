@@ -42,8 +42,8 @@ app.get('/employees', (req, res) => {
 
 app.put('/update', (req, res) => {
     const id = req.body.id;
-    const wage = req.body.wage;
-    db.query("UPDATE SET employees wage = ? WHERE id = ?", [wage, id], (err, result) => {
+    const salary = req.body.salary;
+    db.query("UPDATE employees SET salary = ? WHERE id = ?", [salary, id], (err, result) => {
         if (err) {
             console.log(err)
         } else {
